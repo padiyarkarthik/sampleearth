@@ -13,13 +13,15 @@ Sham : 1001574763
 </b>
 </header>
 <p>
-<h2>Execution time is ({{t}})</h2>
+{% block content %}
+<h2>Execution time is ({{city["time"]}})</h2>
 {% for city in ci %}
  
   <!-- This retrives all the data based on the content typed in textbox of index.html -->
-  <p>The time is <b>{{ city["time"] }}</b> the mag is <b> {{ city["mag"] }} </b>.
+  <p>The time is <b>({{city["time"]}})</b> the mag is <b> ({{city["mag"]}}) </b>.
 
 {% endfor %}
+{% endblock %}
 </p>
 </body>
 </html>
