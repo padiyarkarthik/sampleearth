@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}{% endblock %}  Home</title>
+    {% endblock %}
+</head>
+<body>
+<header>
+<b>
+Sham : 1001574763
+</b>
+</header>
+
+<p>
+ <form action="/displaydata" method="post">
+   <input type="submit" value=" get all data"><br/><br/>
+</form>
+</p>
+<p>
+ <form action="/multiplerun" method="post">
+	Number of queries to run:<input type="text" name="numqueries" maxlength="200" width="60"></br>
+   <input type="submit" value="run query n times"><br/><br/>
+</form>
+</p>
+</body>
+</html>
