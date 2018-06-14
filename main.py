@@ -1,5 +1,6 @@
 from flask import Flask,redirect,render_template,request
 import pypyodbc
+import time
 app = Flask(__name__)
 
 def disdata():
