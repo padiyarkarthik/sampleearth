@@ -1,4 +1,5 @@
 from flask import Flask,redirect,render_template,request
+import pypyodbc
 app = Flask(__name__)
 
 def disdata():
