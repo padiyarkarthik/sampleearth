@@ -9,7 +9,6 @@ import time
 	
 app = Flask(__name__)
 
-
 def disdata():
    server = 'sham05.database.windows.net'
    database = 'sqldb'
@@ -25,17 +24,13 @@ def disdata():
    executiontime = end - start
    return render_template('searchearth.html', ci=row, t=executiontime)
 
-
-	
 @app.route('/')
 def hello_world():
-  return "Hello"
-  
-  
+  return render_template('index.html')
+
 @app.route('/displaydata', methods=['POST'])
 def display():
     return disdata()
-	
 	
 if __name__ == '__main__':
   app.run()
