@@ -25,7 +25,7 @@ def randrange(rangfro=None,rangto=None,num=None):
    cnxn = pypyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1443;DATABASE='+database+';UID='+username+';PWD='+ password)
    cursor = cnxn.cursor()
    start = time.time()
-   for i in range(0,int(num)):
+   for i in range(int(num)):
        magnitude = round(random.uniform(rangfro,rangto),2)
        sqlNum = "SELECT * FROM [earth_data] where mag="+str(magnitude)
        cursor.execute(sqlNum)
