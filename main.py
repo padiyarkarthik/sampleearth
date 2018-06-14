@@ -31,13 +31,12 @@ def randrange(rangfro=None,rangto=None,num=None):
     cursor = dbconn.cursor()
     start = time.time()
     for i in range(0,int(num)):
-    	res= round(random.uniform(rangfro, rangto),2)
-    	success="SELECT * from [earth_data] where mag>'"+str(res)+"'"
+    	mag= round(random.uniform(rangfro, rangto),2)
+    	success="SELECT * from [earth_data] where mag>'"+str(mag)+"'"
     	cursor.execute(success)
-    	rows = cursor.fetchall()
     end = time.time()
-    xtime = end - start
-    return render_template('count.html', ci=rows, t=xtime)
+    exectime = end - start
+    return render_template('count.html', t=exectime)
 
 @app.route('/')
 def hello_world():
