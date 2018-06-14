@@ -1,7 +1,12 @@
+import os
 from flask import Flask,redirect,render_template,request
 import pypyodbc
 import time
 import random
+import urllib
+import datetime
+import json
+
 app = Flask(__name__)
 
 
@@ -22,16 +27,17 @@ def disdata():
    return render_template('searchearth.html', ci=row, t=executiontime)
 
 def randrange(rangfro=None,rangto=None,num=None):
-   cnxn = pypyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1443;DATABASE='+database+';UID='+username+';PWD='+ password)
-   cursor = cnxn.cursor()
-   start = time.time()
-   for i in range(int(num)):
-       magnitude = round(random.uniform(rangfro,rangto),2)
-       sqlNum = "SELECT * FROM [earth_data] where mag="+str(magnitude)
-       cursor.execute(sqlNum)
-   end = time.time()
-   executiontime = end - start
-   return render_template('count.html',t=executiontime)
+    dbconn = pypyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1443;DATABASE='+database+';UID='+username+';PWD='+ password)
+    cursor = dbconn.cursor()
+    start = time.time()
+    for i in range(0,int(num)):
+    	res= round(random.uniform(rangfro, rangto),2)
+    	success="SELECT * from [earth_data] where mag>'"+str(res)+"'"
+    	cursor.execute(success)
+    	rows = cursor.fetchall()
+    end = time.time()
+    xtime = end - start
+    return render_template('count.html', ci=rows, t=xtime)
 
 @app.route('/')
 def hello_world():
